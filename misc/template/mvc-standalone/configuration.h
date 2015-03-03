@@ -3,8 +3,9 @@
 
 #include <string>
 #include <cxxtools/serializationinfo.h>
+#include <tnt/tntconfig.h>
 
-class Configuration
+class Configuration : public tnt::TntConfig
 {
     friend void operator>>= (const cxxtools::SerializationInfo& si, Configuration& config);
 
@@ -12,16 +13,8 @@ class Configuration
     // return the static instance
     static Configuration& it();
 
-    static void readConfiguration(const std::string& file);
-
-    const std::string& listenIp() const
-    { return _listenIp; }
-
-    unsigned short listenPort() const
-    { return _listenPort; }
-
-    unsigned sessionTimeout() const
-    { return _sessionTimeout; }
+    const std::string& htdocs() const
+    { return _htdocs; }
 
     const std::string& dburl() const
     { return _dburl; }
@@ -34,9 +27,7 @@ class Configuration
     Configuration(const Configuration&);  // no implementation
     const Configuration& operator=(const Configuration&);  // no implementation
 
-    std::string    _listenIp;
-    unsigned short _listenPort;
-    unsigned       _sessionTimeout;
+    std::string    _htdocs;
     std::string    _dburl;
     cxxtools::SerializationInfo _loggingConfiguration;
 };

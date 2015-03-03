@@ -4,10 +4,13 @@ AUTOMAKE_OPTIONS = subdir-objects
 bin_PROGRAMS = @PROJECT@
 
 noinst_HEADERS = \
-	configuration.h
+	configuration.h \
+	model/index.ecpp
 
 ecppSources = \
-	index.ecpp \
+	controller/index.ecpp \
+	json/example.ecpp \
+	view/index.ecpp \
 	webmain.ecpp
 
 staticSources = \
@@ -21,7 +24,7 @@ staticSources = \
 nodist_@CPROJECT@_SOURCES = \
 	resources.cpp
 
-@CPROJECT@_LDFLAGS = -lcxxtools -ltntnet
+@CPROJECT@_LDADD = -lcxxtools -ltntnet
 
 nobase_dist_noinst_DATA = $(staticSources)
 
